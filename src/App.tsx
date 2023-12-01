@@ -1,54 +1,86 @@
-// import "./index.css";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { Flex, Button } from "antd";
-import Container from "./Container";
+import "./index.css";
+import React, { useState } from "react";
+import {
+  DesktopOutlined,
+  PlusOutlined,
+  TeamOutlined,
+  CheckOutlined,
+} from "@ant-design/icons";
+import type { MenuProps } from "antd";
+import { Breadcrumb, Layout, Menu, theme } from "antd";
+
+const { Header, Content, Footer, Sider } = Layout;
+
+type MenuItem = Required<MenuProps>["items"][number];
+
+function getItem(
+  label: React.ReactNode,
+  key: React.Key,
+  icon?: React.ReactNode,
+  children?: MenuItem[]
+): MenuItem {
+  return {
+    key,
+    icon,
+    children,
+    label,
+  } as MenuItem;
+}
+
+const items: MenuItem[] = [
+  getItem("Get Pokemon", "1", <PlusOutlined />),
+  getItem("Pokedex", "2", <DesktopOutlined />),
+  getItem("Quiz", "sub1", <CheckOutlined />),
+  getItem("Team", "4", <TeamOutlined />),
+];
 
 const App: React.FC = () => {
-  const numberOfPokemon = 1021;
-  const [pokemon, setPokemon] = useState({});
-  const [searchType, setSearchType] = useState("");
-  const [isShow, setIsShow] = useState(false);
-  const [isSearch, setIsSearch] = useState(false);
-
-  useEffect(() => {
-    console.log(pokemon);
-    console.log("clicked");
-    console.log(isShow);
-  }, [pokemon]);
-
-  const generateRandomId = () => {
-    return Math.floor(Math.random() * numberOfPokemon) + 1;
-  };
-
-  const fetchPokemon = async (id: unknown) => {
-    try {
-      const response = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon/${id}`
-      );
-      setPokemon(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleRandomButtonClick = () => {
-    const id = generateRandomId();
-    fetchPokemon(id);
-    setIsShow(true);
-  };
+  const [collapsed, setCollapsed] = useState(false);
+  const {
+    token: { colorBgContainer },
+  } = theme.useToken();
 
   return (
-    <div>
-      <Flex gap={20} justify="center" align="center">
-        <Button type="default">Clear Content</Button>
-        <Button type="primary" onClick={handleRandomButtonClick}>
-          Generate Random Pokemon
-        </Button>
-        <Button type="primary">Search</Button>
-      </Flex>
-      {isShow && <Container data={pokemon} />}
-    </div>
+    <Layout style={{ minHeight: "100vh" }}>
+      <Sider
+        collapsible
+        collapsed={collapsed}
+        onCollapse={(value) => setCollapsed(value)}
+      >
+        <div className="demo-logo-vertical">
+          <h1>PokeWorld</h1>
+        </div>
+        <Menu
+          theme="dark"
+          defaultSelectedKeys={["1"]}
+          mode="inline"
+          items={items}
+        />
+      </Sider>
+      <Layout>
+        <Header
+          style={{ margin: 0, background: colorBgContainer, width: "100%" }}
+        />
+        <Content style={{ margin: "0 16px" }}>
+          <Breadcrumb style={{ margin: "16px 0" }}>
+            <Breadcrumb.Item>User</Breadcrumb.Item>
+            <Breadcrumb.Item>Bill</Breadcrumb.Item>
+          </Breadcrumb>
+          <div
+            style={{
+              padding: 24,
+              minHeight: 360,
+              background: colorBgContainer,
+            }}
+          >
+            Bill is a cat.
+          </div>
+        </Content>
+        <Footer style={{ textAlign: "center" }}>
+          Ant Design ©2023 Created by Ant UED
+        </Footer>
+      </Layout>
+    </Layout>
   );
 };
 
