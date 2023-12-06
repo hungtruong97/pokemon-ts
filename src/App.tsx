@@ -7,7 +7,8 @@ import {
   CheckOutlined,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
-import { Breadcrumb, Layout, Menu, theme } from "antd";
+import { Layout, Menu, theme } from "antd";
+import { Outlet, Link } from "react-router-dom";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -17,21 +18,22 @@ function getItem(
   label: React.ReactNode,
   key: React.Key,
   icon?: React.ReactNode,
+  url?: string,
   children?: MenuItem[]
 ): MenuItem {
   return {
     key,
     icon,
     children,
-    label,
+    label: url ? <Link to={url}>{label}</Link> : label,
   } as MenuItem;
 }
 
 const items: MenuItem[] = [
-  getItem("Get Pokemon", "1", <PlusOutlined />),
-  getItem("Pokedex", "2", <DesktopOutlined />),
-  getItem("Quiz", "sub1", <CheckOutlined />),
-  getItem("Team", "4", <TeamOutlined />),
+  getItem("Get Pokemon", "1", <PlusOutlined />, "/get-pokemon"),
+  getItem("Pokedex", "2", <DesktopOutlined />, "/pokedex"),
+  getItem("Quiz", "sub1", <CheckOutlined />, "/quiz"),
+  getItem("Team", "4", <TeamOutlined />, "/team"),
 ];
 
 const App: React.FC = () => {
@@ -62,19 +64,7 @@ const App: React.FC = () => {
           style={{ margin: 0, background: colorBgContainer, width: "100%" }}
         />
         <Content style={{ margin: "0 16px" }}>
-          <Breadcrumb style={{ margin: "16px 0" }}>
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-          </Breadcrumb>
-          <div
-            style={{
-              padding: 24,
-              minHeight: 360,
-              background: colorBgContainer,
-            }}
-          >
-            Bill is a cat.
-          </div>
+          <Outlet />
         </Content>
         <Footer style={{ textAlign: "center" }}>
           Ant Design ©2023 Created by Ant UED
