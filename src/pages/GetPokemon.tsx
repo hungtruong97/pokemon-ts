@@ -1,10 +1,23 @@
+import { Flex, Button } from "antd";
+import { useNavigate } from "react-router-dom";
+
 const GetPokemon: React.FC = () => {
+  const navigate = useNavigate();
+
+  const generateRandomID = () => {
+    const pokemonNumber = 1017;
+    const randomID = Math.floor(Math.random() * pokemonNumber) + 1;
+    navigate(`/get-pokemon/${randomID}`);
+  };
+
   return (
-    <div id="get-pokemon">
-      <h1>Get Pokemon</h1>
-      <p>Click the button below to get a random Pokemon!</p>
-      <button>Get Pokemon</button>
-    </div>
+    <Flex vertical justify="center" align="center">
+      <h1 style={{ marginTop: "100px" }}>Welcome to Pokeworld</h1>
+      <h2>Click on the button below to generate a random Pokemon</h2>
+      <Button type="primary" size="large" onClick={generateRandomID}>
+        Generate Pokemon
+      </Button>
+    </Flex>
   );
 };
 

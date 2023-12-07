@@ -7,6 +7,8 @@ import GetPokemon from "./pages/GetPokemon.tsx";
 import Pokedex from "./pages/Pokedex.tsx";
 import Quiz from "./pages/Quiz.tsx";
 import Team from "./pages/Team.tsx";
+import Pokemon from "./organisms/Pokemon.tsx";
+import Evolution from "./pages/Evolution.tsx";
 
 const router = createBrowserRouter([
   {
@@ -19,9 +21,19 @@ const router = createBrowserRouter([
         element: <GetPokemon />,
         errorElement: <Error />,
       },
+      {
+        path: "get-pokemon/:id",
+        element: <Pokemon />,
+        errorElement: <Error />,
+      },
       { path: "/pokedex", element: <Pokedex />, errorElement: <Error /> },
       { path: "/quiz", element: <Quiz />, errorElement: <Error /> },
       { path: "/team", element: <Team />, errorElement: <Error /> },
+      {
+        path: "/evolution/:id",
+        element: <Evolution />,
+        errorElement: <Error />,
+      },
     ],
   },
 ]);
