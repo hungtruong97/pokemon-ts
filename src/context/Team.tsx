@@ -29,12 +29,14 @@ export const TeamProvider: React.FC<TeamProviderProps> = ({ children }) => {
   });
 
   const addPokemon = (pokemon: Pokemon) => {
-    setTeam((prevTeam) => {
-      const updatedTeam = [...prevTeam, pokemon];
-      //save team to local storage
-      localStorage.setItem("team", JSON.stringify(updatedTeam));
-      return updatedTeam;
-    });
+    if (team.length < 6) {
+      setTeam((prevTeam) => {
+        const updatedTeam = [...prevTeam, pokemon];
+        //save team to local storage
+        localStorage.setItem("team", JSON.stringify(updatedTeam));
+        return updatedTeam;
+      });
+    }
   };
 
   const removePokemon = (pokemonId: string) => {
