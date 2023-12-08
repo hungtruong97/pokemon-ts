@@ -8,15 +8,14 @@ const Team: React.FC = () => {
   }
   const { team } = teamContext;
 
-  console.log(team);
-
   return (
     <div id="team">
       <h1>Your Pokemon Team</h1>
       <div className="team" style={{ display: "flex", gap: 20 }}>
         {team ? (
-          team.map((pokemon) => (
+          team.map((pokemon, index) => (
             <PokemonCard
+              key={index}
               id={pokemon.id}
               name={pokemon.name}
               img={pokemon.img}
