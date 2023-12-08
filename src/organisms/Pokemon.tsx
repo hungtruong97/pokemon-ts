@@ -44,6 +44,8 @@ const Pokemon: React.FC = () => {
     addPokemon({ id, name, img });
   };
 
+  //Function to get pokemon if provided id
+
   const getPokemon = async (id: string) => {
     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
     const pokemonData: PokemonProps = {
