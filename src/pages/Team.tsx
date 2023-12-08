@@ -52,7 +52,10 @@ const Team: React.FC = () => {
   return (
     <div id="team">
       <h1>Your Pokemon Team</h1>
-      <div className="team" style={{ display: "flex", gap: 20 }}>
+      <div
+        className="team"
+        style={{ display: "flex", gap: 20, flexWrap: "wrap", width: "100%" }}
+      >
         {team &&
           team.map((pokemon, index) => (
             <div
@@ -99,54 +102,6 @@ const Team: React.FC = () => {
             </div>
           ))}
         {team.length < 6 && renderSlots(6 - team.length)}
-
-        {/* 
-        <div
-          className="slot"
-          style={{
-            width: 100,
-            height: 150,
-            border: "1px dashed black",
-            borderRadius: 20,
-          }}
-        ></div>
-        <div
-          className="slot"
-          style={{
-            width: 100,
-            height: 150,
-            border: "1px dashed black",
-            borderRadius: 20,
-          }}
-        ></div>
-
-        <div
-          className="slot"
-          style={{
-            width: 100,
-            height: 150,
-            border: "1px dashed black",
-            borderRadius: 20,
-          }}
-        ></div>
-        <div
-          className="slot"
-          style={{
-            width: 100,
-            height: 150,
-            border: "1px dashed black",
-            borderRadius: 20,
-          }}
-        ></div>
-        <div
-          className="slot"
-          style={{
-            width: 100,
-            height: 150,
-            border: "1px dashed black",
-            borderRadius: 20,
-          }}
-        ></div> */}
       </div>
     </div>
   );
