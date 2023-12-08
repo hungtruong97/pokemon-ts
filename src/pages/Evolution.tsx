@@ -26,36 +26,41 @@ const Evolution: React.FC = () => {
     return { img: response.data.sprites.front_default, id: response.data.id };
   };
 
-  const getPokemonEvolutionInfo = async (url: string) => {
-    const response = await axios.get(url);
-    let currentStage = response.data.chain;
-    const tempChain: PokemonProps[] = [];
-
-    while (currentStage) {
-      const pokemonData = await getPokemonImage(currentStage.species.name);
-      tempChain.push({
-        name: currentStage.species.name,
-        url: currentStage.species.url,
-        img: pokemonData.img,
-        id: pokemonData.id,
-      });
-      currentStage =
-        currentStage.evolves_to.length > 0 ? currentStage.evolves_to[0] : null;
-    }
-
-    setEvolutionChain(tempChain);
-  };
-
-  const getEvolutionData = async (id: number) => {
-    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
-    const speciesUrl = response.data.species.url;
-    const evolutionChainUrl = await getPokemonEvolutionChain(speciesUrl);
-    getPokemonEvolutionInfo(evolutionChainUrl);
-  };
-
   useEffect(() => {
     if (id) {
       const pokemonId = Number(id);
+
+      const getPokemonEvolutionInfo = async (url: string) => {
+        const response = await axios.get(url);
+        let currentStage = response.data.chain;
+        const tempChain: PokemonProps[] = [];
+
+        while (currentStage) {
+          const pokemonData = await getPokemonImage(currentStage.species.name);
+          tempChain.push({
+            name: currentStage.species.name,
+            url: currentStage.species.url,
+            img: pokemonData.img,
+            id: pokemonData.id,
+          });
+          currentStage =
+            currentStage.evolves_to.length > 0
+              ? currentStage.evolves_to[0]
+              : null;
+        }
+
+        setEvolutionChain(tempChain);
+      };
+
+      const getEvolutionData = async (id: number) => {
+        const response = await axios.get(
+          `https://pokeapi.co/api/v2/pokemon/${id}`
+        );
+        const speciesUrl = response.data.species.url;
+        const evolutionChainUrl = await getPokemonEvolutionChain(speciesUrl);
+        getPokemonEvolutionInfo(evolutionChainUrl);
+      };
+
       getEvolutionData(pokemonId);
     }
   }, [id]);
