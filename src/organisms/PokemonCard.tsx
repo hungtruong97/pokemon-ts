@@ -17,7 +17,8 @@ const PokemonCard: React.FC<PokemonProps> = ({ name, img, id }) => {
     <div
       id={id}
       style={{
-        width: "100px",
+        width: "150px",
+        height: "200px",
         border: "1px solid black",
         background: "white",
         cursor: "pointer",
@@ -34,7 +35,7 @@ const PokemonCard: React.FC<PokemonProps> = ({ name, img, id }) => {
       <style>{`
         @keyframes jump {
         0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }}       
+        50% { transform: translateY(-5px); }}       
     `}</style>
       <img
         src={img}

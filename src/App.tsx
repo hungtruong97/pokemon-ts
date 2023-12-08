@@ -9,6 +9,7 @@ import {
 import type { MenuProps } from "antd";
 import { Layout, Menu, theme } from "antd";
 import { Outlet, Link } from "react-router-dom";
+import { TeamProvider } from "./context/Team";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -43,34 +44,36 @@ const App: React.FC = () => {
   } = theme.useToken();
 
   return (
-    <Layout style={{ minHeight: "100vh" }}>
-      <Sider
-        collapsible
-        collapsed={collapsed}
-        onCollapse={(value) => setCollapsed(value)}
-      >
-        <div className="demo-logo-vertical">
-          <h1>PokeWorld</h1>
-        </div>
-        <Menu
-          theme="dark"
-          defaultSelectedKeys={["1"]}
-          mode="inline"
-          items={items}
-        />
-      </Sider>
-      <Layout>
-        <Header
-          style={{ margin: 0, background: colorBgContainer, width: "100%" }}
-        />
-        <Content style={{ margin: "0 16px" }}>
-          <Outlet />
-        </Content>
-        <Footer style={{ textAlign: "center" }}>
-          Ant Design ©2023 Created by Ant UED
-        </Footer>
+    <TeamProvider>
+      <Layout style={{ minHeight: "100vh" }}>
+        <Sider
+          collapsible
+          collapsed={collapsed}
+          onCollapse={(value) => setCollapsed(value)}
+        >
+          <div className="demo-logo-vertical">
+            <h1>PokeWorld</h1>
+          </div>
+          <Menu
+            theme="dark"
+            defaultSelectedKeys={["1"]}
+            mode="inline"
+            items={items}
+          />
+        </Sider>
+        <Layout>
+          <Header
+            style={{ margin: 0, background: colorBgContainer, width: "100%" }}
+          />
+          <Content style={{ margin: "0 16px" }}>
+            <Outlet />
+          </Content>
+          <Footer style={{ textAlign: "center" }}>
+            Ant Design ©2023 Created by Ant UED
+          </Footer>
+        </Layout>
       </Layout>
-    </Layout>
+    </TeamProvider>
   );
 };
 

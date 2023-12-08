@@ -1,15 +1,17 @@
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "antd";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useTeam } from "../context/Team";
 
 interface PokemonProps {
+  id: string;
   name: string;
-  id: number;
-  type: string;
-  image: string;
-  weight: string;
-  height: string;
+  img: string;
+  cardImg: string;
+  type?: string;
+  weight?: string;
+  height?: string;
   abilities: AbilityProps[];
 }
 
@@ -25,23 +27,37 @@ const Pokemon: React.FC = () => {
 
   const [pokemon, setPokemon] = useState<PokemonProps | null>(null);
 
+  useEffect(() => {
+    pokemonId && getPokemon(pokemonId);
+  }, [pokemonId]);
+
+  const teamContext = useTeam();
+
+  if (!teamContext) {
+    return <div>Error: team context not available</div>;
+  }
+
+  const { addPokemon } = teamContext;
+
+  //Function to add pokemon to the team context
+  const handleAddPokemon = (id: string, name: string, img: string) => {
+    addPokemon({ id, name, img });
+  };
+
   const getPokemon = async (id: string) => {
     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
     const pokemonData: PokemonProps = {
       name: response.data.name,
       id: response.data.id,
       type: response.data.types[0].type.name,
-      image: response.data.sprites.other[`official-artwork`].front_default,
+      img: response.data.sprites.other[`official-artwork`].front_default,
+      cardImg: response.data.sprites.front_default,
       weight: response.data.weight,
       height: response.data.height,
       abilities: response.data.abilities,
     };
     setPokemon(pokemonData);
   };
-
-  useEffect(() => {
-    pokemonId && getPokemon(pokemonId);
-  }, [pokemonId]);
 
   return (
     <div
@@ -50,7 +66,7 @@ const Pokemon: React.FC = () => {
       <div className="pokemon">
         <h2>Your Pokemon is {pokemon ? pokemon.name : ""}</h2>
         <img
-          src={pokemon ? pokemon.image : ""}
+          src={pokemon ? pokemon.img : ""}
           alt={pokemon ? pokemon.name : ""}
         />
         <h3>Type: {pokemon ? pokemon.type : ""} </h3>
@@ -83,9 +99,16 @@ const Pokemon: React.FC = () => {
         >
           See its evolution
         </Button>
-        <Link to="/team">
-          <Button type="primary">Add to my team</Button>
-        </Link>
+        <Button
+          type="primary"
+          onClick={() => {
+            if (pokemon) {
+              handleAddPokemon(pokemon.id, pokemon.name, pokemon.cardImg);
+            }
+          }}
+        >
+          Add to my team
+        </Button>
       </div>
     </div>
   );
