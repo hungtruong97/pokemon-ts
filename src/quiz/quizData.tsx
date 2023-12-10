@@ -5,6 +5,7 @@ export interface Quiz {
   image?: string;
   options: string[];
   answer: string;
+  pokemon: string;
 }
 
 export const pokemonQuiz: Quiz[] = [
@@ -15,6 +16,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Pikachu_Image", // Replace with the actual image URL of Pikachu
     options: ["Raichu", "Pikachu", "Electabuzz", "Jolteon"],
     answer: "Pikachu",
+    pokemon: "Pikachu",
   },
   {
     id: 2,
@@ -23,6 +25,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Nidoking_Image", // Replace with the actual image URL of Nidoking
     options: ["Nidoran", "Nidorino", "Nidoking", "Nidoqueen"],
     answer: "Nidorino",
+    pokemon: "Nidoking",
   },
   {
     id: 3,
@@ -30,6 +33,7 @@ export const pokemonQuiz: Quiz[] = [
     question: "What is the type of Gastly?",
     options: ["Ghost/Poison", "Dark/Ghost", "Poison", "Ghost"],
     answer: "Ghost/Poison",
+    pokemon: "Gastly",
   },
   {
     id: 4,
@@ -37,6 +41,7 @@ export const pokemonQuiz: Quiz[] = [
     question: "What is the next evolution of Mankey?",
     options: ["Primeape", "Machoke", "Poliwrath", "No evolution"],
     answer: "Primeape",
+    pokemon: "Mankey",
   },
   {
     id: 5,
@@ -45,6 +50,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Abra_Image", // Replace with the actual image URL of Abra
     options: ["Kadabra", "Alakazam", "Abra", "Mewtwo"],
     answer: "Abra",
+    pokemon: "Abra",
   },
   {
     id: 6,
@@ -53,6 +59,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Dragonair_Image", // Replace with the actual image URL of Dragonair
     options: ["Dratini", "Dragonair", "Dragonite", "Gyarados"],
     answer: "Dratini",
+    pokemon: "Dragonair",
   },
   {
     id: 7,
@@ -60,6 +67,7 @@ export const pokemonQuiz: Quiz[] = [
     question: "Which one is a move of Poliwhirl?",
     options: ["Water Gun", "Bubble Beam", "Hydro Pump", "All of the above"],
     answer: "All of the above",
+    pokemon: "Poliwhirl",
   },
   {
     id: 8,
@@ -67,6 +75,7 @@ export const pokemonQuiz: Quiz[] = [
     question: "What is the type of Clefairy?",
     options: ["Fairy", "Normal", "Fairy/Psychic", "Normal/Fairy"],
     answer: "Fairy",
+    pokemon: "Clefairy",
   },
   {
     id: 9,
@@ -75,6 +84,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Magnemite_Image", // Replace with the actual image URL of Magnemite
     options: ["Magneton", "Voltorb", "Electrode", "Magnemite"],
     answer: "Magnemite",
+    pokemon: "Magnemite",
   },
   {
     id: 10,
@@ -83,6 +93,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Kingler_Image", // Replace with the actual image URL of Kingler
     options: ["Krabby", "Kingler", "Corphish", "Crawdaunt"],
     answer: "Krabby",
+    pokemon: "Kingler",
   },
   {
     id: 11,
@@ -91,6 +102,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Scyther_Image", // Replace with the actual image URL of Scyther
     options: ["Scyther", "Beedrill", "Pinsir", "Butterfree"],
     answer: "Scyther",
+    pokemon: "Scyther",
   },
   {
     id: 12,
@@ -99,6 +111,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Poliwrath_Image", // Replace with the actual image URL of Poliwrath
     options: ["Poliwag", "Poliwhirl", "Poliwrath", "Seaking"],
     answer: "Poliwhirl",
+    pokemon: "Poliwrath",
   },
   {
     id: 13,
@@ -106,6 +119,7 @@ export const pokemonQuiz: Quiz[] = [
     question: "What is the type of Hitmonlee?",
     options: ["Fighting", "Rock", "Ground", "Steel"],
     answer: "Fighting",
+    pokemon: "Hitmonlee",
   },
   {
     id: 14,
@@ -113,6 +127,7 @@ export const pokemonQuiz: Quiz[] = [
     question: "What is the next evolution of Diglett?",
     options: ["Dugtrio", "Diglett", "Geodude", "No evolution"],
     answer: "Dugtrio",
+    pokemon: "Diglett",
   },
   {
     id: 15,
@@ -121,6 +136,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Electabuzz_Image", // Replace with the actual image URL of Electabuzz
     options: ["Electrode", "Voltorb", "Electabuzz", "Jolteon"],
     answer: "Electabuzz",
+    pokemon: "Electabuzz",
   },
   {
     id: 16,
@@ -129,6 +145,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Seaking_Image", // Replace with the actual image URL of Seaking
     options: ["Magikarp", "Goldeen", "Seaking", "Gyarados"],
     answer: "Goldeen",
+    pokemon: "Seaking",
   },
   {
     id: 17,
@@ -136,6 +153,7 @@ export const pokemonQuiz: Quiz[] = [
     question: "Which one is a move of Jynx?",
     options: ["Ice Beam", "Psychic", "Lovely Kiss", "All of the above"],
     answer: "All of the above",
+    pokemon: "Jynx",
   },
   {
     id: 18,
@@ -143,6 +161,7 @@ export const pokemonQuiz: Quiz[] = [
     question: "What is the type of Doduo?",
     options: ["Normal/Flying", "Flying", "Normal", "Ground"],
     answer: "Normal/Flying",
+    pokemon: "Doduo",
   },
   {
     id: 19,
@@ -151,6 +170,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Muk_Image", // Replace with the actual image URL of Muk
     options: ["Grimer", "Muk", "Gloom", "Weezing"],
     answer: "Muk",
+    pokemon: "Muk",
   },
   {
     id: 20,
@@ -159,6 +179,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Marowak_Image", // Replace with the actual image URL of Marowak
     options: ["Cubone", "Marowak", "Kangaskhan", "Sandshrew"],
     answer: "Cubone",
+    pokemon: "Marowak",
   },
   {
     id: 21,
@@ -167,6 +188,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Koffing_Image", // Replace with the actual image URL of Koffing
     options: ["Weezing", "Grimer", "Koffing", "Muk"],
     answer: "Koffing",
+    pokemon: "Koffing",
   },
   {
     id: 22,
@@ -175,6 +197,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Vileplume_Image", // Replace with the actual image URL of Vileplume
     options: ["Gloom", "Oddish", "Vileplume", "Bellsprout"],
     answer: "Gloom",
+    pokemon: "Vileplume",
   },
   {
     id: 23,
@@ -182,6 +205,7 @@ export const pokemonQuiz: Quiz[] = [
     question: "What is the type of Exeggcute?",
     options: ["Grass/Psychic", "Grass", "Psychic", "Normal"],
     answer: "Grass/Psychic",
+    pokemon: "Exeggcute",
   },
   {
     id: 24,
@@ -189,6 +213,7 @@ export const pokemonQuiz: Quiz[] = [
     question: "What is the next evolution of Machop?",
     options: ["Machoke", "Machamp", "Mankey", "No evolution"],
     answer: "Machoke",
+    pokemon: "Machop",
   },
   {
     id: 25,
@@ -197,6 +222,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Cubone_Image", // Replace with the actual image URL of Cubone
     options: ["Marowak", "Cubone", "Kangaskhan", "Sandslash"],
     answer: "Cubone",
+    pokemon: "Cubone",
   },
   {
     id: 26,
@@ -205,6 +231,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Golbat_Image", // Replace with the actual image URL of Golbat
     options: ["Zubat", "Golbat", "Crobat", "Noctowl"],
     answer: "Zubat",
+    pokemon: "Golbat",
   },
   {
     id: 27,
@@ -212,6 +239,7 @@ export const pokemonQuiz: Quiz[] = [
     question: "Which one is a move of Vulpix?",
     options: ["Flamethrower", "Ember", "Fire Spin", "All of the above"],
     answer: "All of the above",
+    pokemon: "Vulpix",
   },
   {
     id: 28,
@@ -219,6 +247,7 @@ export const pokemonQuiz: Quiz[] = [
     question: "What is the type of Meowth?",
     options: ["Normal", "Dark", "Psychic", "Steel"],
     answer: "Normal",
+    pokemon: "Meowth",
   },
   {
     id: 29,
@@ -227,6 +256,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Clefable_Image", // Replace with the actual image URL of Clefable
     options: ["Clefairy", "Clefable", "Jigglypuff", "Wigglytuff"],
     answer: "Clefable",
+    pokemon: "Clefable",
   },
   {
     id: 30,
@@ -235,6 +265,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Blastoise_Image", // Replace with the actual image URL of Blastoise
     options: ["Squirtle", "Wartortle", "Blastoise", "Lapras"],
     answer: "Wartortle",
+    pokemon: "Blastoise",
   },
   {
     id: 31,
@@ -243,6 +274,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Farfetchd_Image", // Replace with the actual image URL of Farfetch'd
     options: ["Farfetch'd", "Spearow", "Pidgeotto", "Doduo"],
     answer: "Farfetch'd",
+    pokemon: "Farfetch'd",
   },
   {
     id: 32,
@@ -251,6 +283,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Cloyster_Image", // Replace with the actual image URL of Cloyster
     options: ["Shellder", "Krabby", "Cloyster", "Lapras"],
     answer: "Shellder",
+    pokemon: "Cloyster",
   },
   {
     id: 33,
@@ -258,6 +291,7 @@ export const pokemonQuiz: Quiz[] = [
     question: "What is the type of Lickitung?",
     options: ["Normal", "Fairy", "Psychic", "Fighting"],
     answer: "Normal",
+    pokemon: "Lickitung",
   },
   {
     id: 34,
@@ -265,6 +299,7 @@ export const pokemonQuiz: Quiz[] = [
     question: "What is the next evolution of Rhyhorn?",
     options: ["Rhydon", "Rhyperior", "No evolution", "Nidoking"],
     answer: "Rhydon",
+    pokemon: "Rhyhorn",
   },
   {
     id: 35,
@@ -273,6 +308,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Chancy_Image", // Replace with the actual image URL of Chansey
     options: ["Clefable", "Wigglytuff", "Blissey", "Chansey"],
     answer: "Chansey",
+    pokemon: "Chansey",
   },
   {
     id: 36,
@@ -281,6 +317,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Dewgong_Image", // Replace with the actual image URL of Dewgong
     options: ["Seel", "Dewgong", "Lapras", "Seaking"],
     answer: "Seel",
+    pokemon: "Dewgong",
   },
   {
     id: 37,
@@ -288,6 +325,7 @@ export const pokemonQuiz: Quiz[] = [
     question: "Which one is a move of Starmie?",
     options: ["Hydro Pump", "Psychic", "Swift", "All of the above"],
     answer: "All of the above",
+    pokemon: "Starmie",
   },
   {
     id: 38,
@@ -295,6 +333,7 @@ export const pokemonQuiz: Quiz[] = [
     question: "What is the type of Mr. Mime?",
     options: ["Psychic/Fairy", "Normal", "Psychic", "Fairy"],
     answer: "Psychic/Fairy",
+    pokemon: "Mr. Mime",
   },
   {
     id: 39,
@@ -303,6 +342,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Scyther_Image", // Replace with the actual image URL of Scyther
     options: ["Scyther", "Beedrill", "Kabutops", "Pinsir"],
     answer: "Scyther",
+    pokemon: "Scyther",
   },
   {
     id: 40,
@@ -311,6 +351,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Kingler_Image", // Replace with the actual image URL of Kingler
     options: ["Krabby", "Kingler", "Corphish", "Crawdaunt"],
     answer: "Krabby",
+    pokemon: "Kingler",
   },
   {
     id: 41,
@@ -319,6 +360,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Pinsir_Image", // Replace with the actual image URL of Pinsir
     options: ["Scyther", "Pinsir", "Heracross", "Beedrill"],
     answer: "Pinsir",
+    pokemon: "Pinsir",
   },
   {
     id: 42,
@@ -327,6 +369,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Alakazam_Image", // Replace with the actual image URL of Alakazam
     options: ["Kadabra", "Abra", "Alakazam", "Machop"],
     answer: "Kadabra",
+    pokemon: "Alakazam",
   },
   {
     id: 43,
@@ -334,6 +377,7 @@ export const pokemonQuiz: Quiz[] = [
     question: "What is the type of Magnemite?",
     options: ["Electric/Steel", "Electric", "Steel", "Electric/Rock"],
     answer: "Electric/Steel",
+    pokemon: "Magnemite",
   },
   {
     id: 44,
@@ -341,6 +385,7 @@ export const pokemonQuiz: Quiz[] = [
     question: "What is the next evolution of Doduo?",
     options: ["Dodrio", "Doduo", "Pidgeot", "No evolution"],
     answer: "Dodrio",
+    pokemon: "Doduo",
   },
   {
     id: 45,
@@ -349,6 +394,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Growlithe_Image", // Replace with the actual image URL of Growlithe
     options: ["Arcanine", "Growlithe", "Vulpix", "Charmander"],
     answer: "Growlithe",
+    pokemon: "Growlithe",
   },
   {
     id: 46,
@@ -357,6 +403,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Nidoqueen_Image", // Replace with the actual image URL of Nidoqueen
     options: ["Nidorina", "Nidoran♀", "Nidoqueen", "Nidoran♂"],
     answer: "Nidorina",
+    pokemon: "Nidoqueen",
   },
   {
     id: 47,
@@ -364,6 +411,7 @@ export const pokemonQuiz: Quiz[] = [
     question: "Which one is a move of Electabuzz?",
     options: ["Thunder Punch", "Thunderbolt", "Thunder", "All of the above"],
     answer: "All of the above",
+    pokemon: "Electabuzz",
   },
   {
     id: 48,
@@ -371,6 +419,7 @@ export const pokemonQuiz: Quiz[] = [
     question: "What is the type of Parasect?",
     options: ["Bug/Grass", "Bug/Poison", "Grass/Poison", "Bug/Ground"],
     answer: "Bug/Grass",
+    pokemon: "Parasect",
   },
   {
     id: 49,
@@ -379,6 +428,7 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Machamp_Image", // Replace with the actual image URL of Machamp
     options: ["Machoke", "Machamp", "Machop", "Hitmonlee"],
     answer: "Machamp",
+    pokemon: "Machamp",
   },
   {
     id: 50,
@@ -387,5 +437,6 @@ export const pokemonQuiz: Quiz[] = [
     image: "URL_of_Golem_Image", // Replace with the actual image URL of Golem
     options: ["Geodude", "Graveler", "Golem", "Onix"],
     answer: "Graveler",
+    pokemon: "Golem",
   },
 ];
