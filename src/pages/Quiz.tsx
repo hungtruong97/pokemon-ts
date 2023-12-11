@@ -19,7 +19,6 @@ const Quiz: React.FC = () => {
       }}
     >
       <h2>Are you ready for a quiz?</h2>
-
       <Button onClick={() => handleClick(1)}>Start Quiz!</Button>
     </div>
   );

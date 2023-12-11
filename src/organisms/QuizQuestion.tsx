@@ -1,25 +1,17 @@
 import { useState, useEffect } from "react";
 import { pokemonQuiz } from "../quiz/quizData";
 import { useNavigate } from "react-router-dom";
-import { Radio, Space, Button } from "antd";
-import type { RadioChangeEvent } from "antd";
+import QuizQuestionTemplate from "./QuizQuestionTemplate";
 import axios from "axios";
 
 const QuizQuestion: React.FC = () => {
   const navigate = useNavigate();
   const [questionIndex, setQuestionIndex] = useState<number>(1);
   const [questionId, setQuestionID] = useState<number>(0);
-  const [value, setValue] = useState<string>("");
   const [questionList, setQuestionList] = useState<number[]>([]);
   const [correctAnswerNumber, setCorrectAnswerNumber] = useState<number>(0);
   const [showResult, setShowResult] = useState<boolean>(false);
   const [quizImg, setQuizImg] = useState<string>("");
-
-  //onChange function for radio button
-  const onChange = (e: RadioChangeEvent) => {
-    console.log("radio checked", e.target.value);
-    setValue(e.target.value);
-  };
 
   useEffect(() => {
     //Function to get pokemon image from pokemon name
@@ -60,62 +52,22 @@ const QuizQuestion: React.FC = () => {
     if (question?.answer === answer) {
       setCorrectAnswerNumber((prev) => prev + 1);
     }
+    console.log(correctAnswerNumber);
   };
 
   //Function to handle next button
-  const handleNext = () => {
+  const handleNext = (value: string) => {
     checkAnswer(value);
     const id = questionIndex + 1;
     setQuestionIndex(id);
     navigate(`/quiz/${id}`);
-    setValue("");
     setQuizImg("");
   };
 
   //Fucntion to handle Check result button
-  const handleCheckResult = () => {
+  const handleCheckResult = (value: string) => {
     checkAnswer(value);
     setShowResult(true);
-  };
-
-  //Function to generate question
-  const generateQuestion = (id: number) => {
-    const question = pokemonQuiz.find((question) => question.id === id);
-    return (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          width: 500,
-          gap: 20,
-        }}
-      >
-        <h4>Question {questionIndex}:</h4>
-        <p>{question?.question}</p>
-        <img
-          src={quizImg}
-          style={{
-            width: 200,
-          }}
-        />
-        <Radio.Group onChange={onChange} value={value}>
-          <Space direction="vertical">
-            {question?.options.map((option: string) => (
-              <Radio value={option}>{option}</Radio>
-            ))}
-          </Space>
-        </Radio.Group>
-        {questionIndex < 5 ? (
-          <Button type="primary" style={{ width: 100 }} onClick={handleNext}>
-            Next
-          </Button>
-        ) : (
-          <Button type="primary" onClick={handleCheckResult}>
-            Check result
-          </Button>
-        )}
-      </div>
-    );
   };
 
   return (
@@ -125,7 +77,13 @@ const QuizQuestion: React.FC = () => {
         placeItems: "center",
       }}
     >
-      {generateQuestion(questionId)}
+      <QuizQuestionTemplate
+        id={questionId}
+        index={questionIndex}
+        img={quizImg}
+        handleNext={handleNext}
+        handleCheckResult={handleCheckResult}
+      />
       {showResult && (
         <div>
           <p>You have answered {correctAnswerNumber} questions correctly.</p>
