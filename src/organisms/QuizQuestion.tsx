@@ -3,14 +3,26 @@ import { pokemonQuiz } from "../quiz/quizData";
 import { useNavigate } from "react-router-dom";
 import QuizQuestionTemplate from "./QuizQuestionTemplate";
 import axios from "axios";
+import { Button, Modal } from "antd";
 
 const QuizQuestion: React.FC = () => {
+  //for modal component
+  const [open, setOpen] = useState(false);
+
+  const showModal = () => {
+    setOpen(true);
+  };
+
+  const handleCancel = () => {
+    setOpen(false);
+  };
+
+  //for component
   const navigate = useNavigate();
   const [questionIndex, setQuestionIndex] = useState<number>(1);
   const [questionId, setQuestionID] = useState<number>(0);
   const [questionList, setQuestionList] = useState<number[]>([]);
   const [correctAnswerNumber, setCorrectAnswerNumber] = useState<number>(0);
-  const [showResult, setShowResult] = useState<boolean>(false);
   const [quizImg, setQuizImg] = useState<string>("");
 
   useEffect(() => {
@@ -44,6 +56,7 @@ const QuizQuestion: React.FC = () => {
     };
 
     generateRandomQuestionIdAndImage();
+    console.log(correctAnswerNumber);
   }, [questionIndex]);
 
   //Function to check answer
@@ -52,7 +65,6 @@ const QuizQuestion: React.FC = () => {
     if (question?.answer === answer) {
       setCorrectAnswerNumber((prev) => prev + 1);
     }
-    console.log(correctAnswerNumber);
   };
 
   //Function to handle next button
@@ -67,7 +79,7 @@ const QuizQuestion: React.FC = () => {
   //Fucntion to handle Check result button
   const handleCheckResult = (value: string) => {
     checkAnswer(value);
-    setShowResult(true);
+    showModal();
   };
 
   return (
@@ -84,10 +96,40 @@ const QuizQuestion: React.FC = () => {
         handleNext={handleNext}
         handleCheckResult={handleCheckResult}
       />
-      {showResult && (
-        <div>
+      {open && (
+        <Modal
+          open={open}
+          title="Title"
+          onOk={handleCancel}
+          onCancel={handleCancel}
+          footer={[
+            <Button
+              type="primary"
+              key="quiz"
+              onClick={() => {
+                handleCancel;
+                navigate("/quiz");
+              }}
+            >
+              Go to Quiz page
+            </Button>,
+            <Button
+              key="try again"
+              type="default"
+              onClick={() => {
+                setOpen(false);
+                setQuestionIndex(1);
+                setQuestionList([]);
+                setCorrectAnswerNumber(0);
+                navigate(`/quiz/${questionIndex}`);
+              }}
+            >
+              Try Again
+            </Button>,
+          ]}
+        >
           <p>You have answered {correctAnswerNumber} questions correctly.</p>
-        </div>
+        </Modal>
       )}
     </div>
   );

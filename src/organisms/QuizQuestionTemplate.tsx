@@ -57,7 +57,10 @@ const QuizQuestionTemplate: React.FC<QuizQuestionProps> = ({
           disabled={value ? false : true}
           type="primary"
           style={{ width: 100 }}
-          onClick={() => handleNext(value)}
+          onClick={() => {
+            handleNext(value);
+            setValue("");
+          }}
         >
           Next
         </Button>
