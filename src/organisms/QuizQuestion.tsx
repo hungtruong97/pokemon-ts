@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { pokemonQuiz } from "../quiz/quizData";
 import { useNavigate } from "react-router-dom";
 import QuizQuestionTemplate from "./QuizQuestionTemplate";
-import axios from "axios";
 import { Button, Modal } from "antd";
+import usePokemonData from "../hook/usePokemonData";
 
 const QuizQuestion: React.FC = () => {
   //for modal component
@@ -23,40 +23,35 @@ const QuizQuestion: React.FC = () => {
   const [questionId, setQuestionID] = useState<number>(0);
   const [questionList, setQuestionList] = useState<number[]>([]);
   const [correctAnswerNumber, setCorrectAnswerNumber] = useState<number>(0);
-  const [quizImg, setQuizImg] = useState<string>("");
+
+  //Function to get pokemon image from pokemon name
+  const modifyPokemonName = (name: string) => {
+    const apiName = name
+      .replace(".", "")
+      .replace("'", "")
+      .replace(" ", "-")
+      .toLowerCase();
+    return apiName;
+  };
+
+  //Custom hook for fetching pokemon data
+  const { pokemon } = usePokemonData(
+    questionId ? modifyPokemonName(pokemonQuiz[questionId - 1]?.pokemon) : ""
+  );
+
+  //Function to generate a random id to fetch question data
+  const generateRandomQuestionId = () => {
+    const numberOfQuestions = 50;
+    let randomQuestionId: number;
+    do {
+      randomQuestionId = Math.floor(Math.random() * numberOfQuestions) + 1;
+    } while (questionList.includes(randomQuestionId));
+    setQuestionID(randomQuestionId);
+    setQuestionList((prevList) => [...prevList, randomQuestionId]);
+  };
 
   useEffect(() => {
-    //Function to get pokemon image from pokemon name
-    const getPokemonImgFromName = async (name: string) => {
-      const apiName = name
-        .replace(".", "")
-        .replace("'", "")
-        .replace(" ", "-")
-        .toLowerCase();
-      const response = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon/${apiName}`
-      );
-      return response.data.sprites.other[`official-artwork`].front_default;
-    };
-
-    //Function to generate a random id to fetch question data
-    const generateRandomQuestionIdAndImage = async () => {
-      const numberOfQuestions = 50;
-      let randomQuestionId: number;
-      do {
-        randomQuestionId = Math.floor(Math.random() * numberOfQuestions) + 1;
-      } while (questionList.includes(randomQuestionId));
-      const question = pokemonQuiz.find((q) => q.id === randomQuestionId);
-      if (question) {
-        const imgUrl = await getPokemonImgFromName(question.pokemon);
-        setQuizImg(imgUrl);
-        setQuestionID(randomQuestionId);
-        setQuestionList((prevList) => [...prevList, randomQuestionId]);
-      }
-    };
-
-    generateRandomQuestionIdAndImage();
-    console.log(correctAnswerNumber);
+    generateRandomQuestionId();
   }, [questionIndex]);
 
   //Function to check answer
@@ -73,7 +68,6 @@ const QuizQuestion: React.FC = () => {
     const id = questionIndex + 1;
     setQuestionIndex(id);
     navigate(`/quiz/${id}`);
-    setQuizImg("");
   };
 
   //Fucntion to handle Check result button
@@ -92,7 +86,7 @@ const QuizQuestion: React.FC = () => {
       <QuizQuestionTemplate
         id={questionId}
         index={questionIndex}
-        img={quizImg}
+        img={pokemon?.img || "/src/assets/pngwing.com.png"}
         handleNext={handleNext}
         handleCheckResult={handleCheckResult}
       />
