@@ -1,4 +1,4 @@
-import { pokemonQuiz } from "../quiz/quizData";
+import { pokemonQuiz } from "../data/quizData";
 import { Button, Radio, Space } from "antd";
 import { useState } from "react";
 import type { RadioChangeEvent } from "antd";

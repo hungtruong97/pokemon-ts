@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { pokemonQuiz } from "../quiz/quizData";
+import { pokemonQuiz } from "../data/quizData";
 import { useNavigate } from "react-router-dom";
 import QuizQuestionTemplate from "./QuizQuestionTemplate";
 import { Button, Modal } from "antd";
